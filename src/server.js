@@ -29,13 +29,34 @@ server.listen(port, hostname, () => {
 
 const express = require('express')
 const listaCursos = require('./db/cursos.json')
+const mysql = require('mysql');
 const app = express()
 const port = 3100
 
 app.get('/', (req, res) => {
   const msg = [{nome: 'LP2'}, {nome: 'PJ3'}]
-  res.send(msg)
+  res.json(msg)
 })
+
+app.get('/', (req, res) => {
+
+    const con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "apinode"
+  });
+
+  con.connect(function(err) {
+    if (err) throw err;
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log(result.all);
+    });
+  });
+})
+
+
 
 app.get('/cursos', (req, res) => {
   res.json(listaCursos)
