@@ -1,4 +1,4 @@
-const http = require('node:http');
+/* const http = require('node:http');
 const fs = require('fs')
 
 const hostname = 'localhost';
@@ -24,4 +24,17 @@ const server = http.createServer((req, res) => {
 
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
-});
+});*/
+
+
+const express = require('express')
+const app = express()
+const port = 3100
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
