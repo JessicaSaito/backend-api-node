@@ -28,11 +28,33 @@ server.listen(port, hostname, () => {
 
 
 const express = require('express')
+const listaCursos = require('./db/cursos.json')
 const app = express()
 const port = 3100
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  const msg = [{nome: 'LP2'}, {nome: 'PJ3'}]
+  res.send(msg)
+})
+
+app.get('/cursos', (req, res) => {
+  res.json(listaCursos)
+})
+
+app.post('/cursos', (req, res) => {
+  res.send('Olá POST cursos!')
+})
+
+app.put('/cursos', (req, res) => {
+  res.send('Fiz um update no Curso!')
+})
+
+app.delete('/cursos', (req, res) => {
+  res.send('Deletei o Curso!')
+})
+
+app.all('/cursos', (req, res) => {
+  res.send('404 Rota não encontrada!')
 })
 
 app.listen(port, () => {
