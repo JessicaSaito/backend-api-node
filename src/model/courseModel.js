@@ -27,4 +27,17 @@ courseModel.createCourse = (course, callback) => {
   })
 }
 
+courseModel.deleteCourse = (id, callback) => {
+  const sql = 'DELETE FROM cursos WHERE id = ?;'
+  const value = [id]
+
+  con.query(sql, value, (err, result) => {
+    if (err) {
+      callback(err, null)
+    } else {
+      callback(null, result)
+    }
+  })
+}
+
 module.exports = courseModel

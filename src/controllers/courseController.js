@@ -25,4 +25,17 @@ courseController.createCourse = (req, res) => {
   })
 }
 
+courseController.deleteCourse = (req, res) => {
+
+  const id = req.body
+  //TODO Verificar se os dados são válidos
+
+  courseModel.deleteCourse(id, (error, result) => {
+    if (error)
+      res.status(500).json({ message: "Erro no Banco de Dados" })
+    if (result)
+      res.json({ message: "Curso Deletado!" })
+  })
+}
+
 module.exports = courseController
