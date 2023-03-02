@@ -38,6 +38,7 @@ courseController.deleteCourse = (req, res) => {
   })
 }
 
+{/*
 courseController.editCourse = (req, res) => {
 
   const id = req.body
@@ -50,5 +51,6 @@ courseController.editCourse = (req, res) => {
       res.json({ message: "Curso Atualizado com sucesso!" })
   })
 }
+*/}
 
 module.exports = courseController

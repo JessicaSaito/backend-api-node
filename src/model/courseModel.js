@@ -40,6 +40,7 @@ courseModel.deleteCourse = (id, callback) => {
   })
 }
 
+{/*
 courseModel.editCourse = (id, callback) => {
   const sql = 'UPDATE cursos (nome, cargahoraria) VALUES (?, ?) WHERE id = ?;'
   const values = [nome, cargahoraria]
@@ -52,5 +53,6 @@ courseModel.editCourse = (id, callback) => {
     }
   })
 }
+*/}
 
 module.exports = courseModel
