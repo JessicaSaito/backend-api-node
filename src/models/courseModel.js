@@ -1,8 +1,6 @@
-const con = require('../db/dbConnection')
+import con from '../db/dbConnection.js'
 
-const courseModel = {}
-
-courseModel.listAllCourses = (callback) => {
+export const listAllCourses = (callback) => {
   const sql = "SELECT * FROM cursos;"
   con.query(sql, (err, result) => {
     if (err) {
@@ -14,12 +12,11 @@ courseModel.listAllCourses = (callback) => {
   })
 }
 
-courseModel.createCourse = (course, callback) => {
+export const createCourse = (course, callback) => {
   const { nome, cargahoraria } = course
   const sql = 'INSERT INTO cursos (nome, cargahoraria) VALUES (?, ?);'
   {/*const sql = 'INSERT INTO cursos SET ?;'*/}
   const values = [nome, cargahoraria]
-
   con.query(sql, values, (err, result) => {
     if (err) {
       callback(err, null)
@@ -30,11 +27,10 @@ courseModel.createCourse = (course, callback) => {
   })
 }
 
-courseModel.deleteCourse = (course, callback) => {
+export const deleteCourse = (course, callback) => {
   const {id} = course
   const sql = 'DELETE FROM cursos WHERE id = ?;'
   const values = [id]
-
   con.query(sql, values, (err, result) => {
     if (err) {
       callback(err, null)
@@ -45,11 +41,10 @@ courseModel.deleteCourse = (course, callback) => {
   })
 }
 
-courseModel.editCourse = (course, callback) => {
+export const editCourse = (course, callback) => {
   const {id, nome, cargahoraria} = course
   const sql = 'UPDATE cursos SET nome = ?, cargahoraria = ? WHERE id = ?;'
   const values = [nome, cargahoraria, id]
-
   con.query(sql, values, (err, result) => {
     if (err) {
       callback(err, null)
@@ -60,4 +55,6 @@ courseModel.editCourse = (course, callback) => {
   })
 }
 
-module.exports = courseModel
+const courseModel = { listAllCourses, createCourse, deleteCourse, editCourse }
+
+export default courseModel

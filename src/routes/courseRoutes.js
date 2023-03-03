@@ -1,14 +1,16 @@
-const express = require('express');
-const router = express.Router();
+import express from 'express'
+import {
+  listAllCourses,
+  createCourse,
+  deleteCourse,
+  editCourse
+} from '../controllers/courseController.js'
 
-const courseController = require('../controllers/courseController')
+const router = express.Router()
 
-const { listAllCourses, createCourse, deleteCourse, editCourse} = courseController
-//adicionar editCourse quando for testa-lo
+router.get('/', listAllCourses) // SELECT
+router.post('/', createCourse) // INSERT
+router.delete('/', deleteCourse) // DELETE
+router.put('/', editCourse) // UPDATE
 
-router.get('/', listAllCourses);
-router.post('/', createCourse);
-router.delete('/', deleteCourse);
-router.put('/', editCourse);
-
-module.exports = router;
+export default router

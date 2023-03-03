@@ -1,7 +1,6 @@
-const mysql = require('mysql')
-const courseModel = require('../models/courseModel')
+import courseModel from '../models/courseModel.js'
 
-const listAllCourses = (req, res) => {
+export const listAllCourses = (req, res) => {
   courseModel.listAllCourses((error, result) => {
     if (error)
       res.status(500).json({ message: "Erro no Banco de Dados" })
@@ -10,11 +9,9 @@ const listAllCourses = (req, res) => {
   })
 }
 
-const createCourse = (req, res) => {
-
+export const createCourse = (req, res) => {
   const course = req.body
   //TODO Verificar se os dados são válidos
-
   courseModel.createCourse(course, (error, result) => {
     if (error)
       res.status(500).json({ message: "Erro no Banco de Dados" })
@@ -23,11 +20,9 @@ const createCourse = (req, res) => {
   })
 }
 
-const deleteCourse = (req, res) => {
-
+export const deleteCourse = (req, res) => {
   const id = req.body
   //TODO Verificar se os dados são válidos
-
   courseModel.deleteCourse(id, (error, result) => {
     if (error)
       res.status(500).json({ message: "Erro no Banco de Dados" })
@@ -36,11 +31,9 @@ const deleteCourse = (req, res) => {
   })
 }
 
-const editCourse = (req, res) => {
-
+export const editCourse = (req, res) => {
   const id = req.body
   //TODO Verificar se os dados são válidos
-
   courseModel.editCourse(id, (error, result) => {
     if (error)
       res.status(500).json({ message: "Erro no Banco de Dados" })
@@ -48,5 +41,3 @@ const editCourse = (req, res) => {
       res.json({ message: "Curso Atualizado com sucesso!" })
   })
 }
-
-module.exports = { listAllCourses, createCourse, deleteCourse, editCourse }
