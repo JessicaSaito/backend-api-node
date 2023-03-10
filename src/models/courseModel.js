@@ -1,5 +1,18 @@
 import con from '../db/dbConnection.js'
 
+export const listCourse = (id, callback) => {
+  const sql = "SELECT * FROM cursos WHERE id = ?;"
+  const value = [id]
+  con.query(sql, value, (err, result) => {
+    if (err) {
+      callback(err, null)
+      console.log('DB Error:' + err.sqlMessage)
+    } else {
+      callback(null, result)
+    }
+  })
+}
+
 export const listAllCourses = (callback) => {
   const sql = "SELECT * FROM cursos;"
   con.query(sql, (err, result) => {
@@ -55,6 +68,6 @@ export const editCourse = (course, callback) => {
   })
 }
 
-const courseModel = { listAllCourses, createCourse, deleteCourse, editCourse }
+const courseModel = { listCourse, listAllCourses, createCourse, deleteCourse, editCourse }
 
 export default courseModel
