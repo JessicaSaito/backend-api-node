@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3312
--- Tempo de geração: 15-Mar-2023 às 03:22
+-- Tempo de geração: 15-Mar-2023 às 16:10
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -36,6 +36,14 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nome`, `foto`, `email`, `senha`) VALUES
+(1, 'gato', 'https://www.rbsdirect.com.br/imagesrc/25516126.jpg?w=700', 'gato@gmail.com', 'gatolhudo'),
+(2, 'coxinha', 'https://blog-static.petlove.com.br/wp-content/uploads/2021/10/gato-sumiu-Petlove.jpg', 'coxinhagato@gmail.com', 'gatocoxinha');
+
+--
 -- Índices para tabelas despejadas
 --
 
@@ -53,7 +61,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
