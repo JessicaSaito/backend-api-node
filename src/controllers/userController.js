@@ -28,32 +28,49 @@ export const createUser = (req, res) => {
   userModel.createUser(user, (error, result) => {
     if (error)
       res.status(500).json({ message: "Erro no Banco de Dados" })
-    if (result)
-      res.json({ message: "Usuário Cadastrado com sucesso!" })
+    if (result) {
+      res.json({
+        message: "Usuário Cadastrado!",
+        user: {
+          id: result.insertId,
+          ...user
+        }
+      })
+    }
   })
 }
 
 
 export const deleteUser = (req, res) => {
-  const id = req.body
+  const { id } = req.body
   //TODO Verificar se os dados são válidos
   userModel.deleteUser(id, (error, result) => {
     if (error)
       res.status(500).json({ message: "Erro no Banco de Dados" })
-    if (result)
-      res.json({ message: "Usuário Deletado com sucesso!" })
+    if (result) {
+      if (result.affectedRows) {
+        res.json({ message: "Usuário Deletado com Sucesso!" })
+      } else {
+        res.status(404).json({ message: `Usuário ${id} não encontrado` })
+      }
+    }
   })
 }
 
 
 export const deleteIdUser = (req, res) => {
-  const id = req.params
+  const { id } = req.params
   //TODO Verificar se os dados são válidos
   userModel.deleteUser(id, (error, result) => {
     if (error)
       res.status(500).json({ message: "Erro no Banco de Dados" })
-    if (result)
-      res.json({ message: "Usuário Deletado com sucesso!" })
+    if (result) {
+      if (result.affectedRows) {
+        res.json({ message: "Usuário Deletado com Sucesso!" })
+      } else {
+        res.status(404).json({ message: `Usuário ${id} não encontrado` })
+      }
+    }
   })
 }
 
@@ -64,7 +81,12 @@ export const editUser = (req, res) => {
   userModel.editUser(id, (error, result) => {
     if (error)
       res.status(500).json({ message: "Erro no Banco de Dados" })
-    if (result)
-      res.json({ message: "Usuário atualizado com sucesso!" })
+    if (result) {
+      if (result.affectedRows) {
+        res.json({ message: "Usuário Atualizado com Sucesso!" })
+      } else {
+        res.status(404).json({ message: `Usuário ${id} não encontrado` })
+      }
+    }
   })
 }
