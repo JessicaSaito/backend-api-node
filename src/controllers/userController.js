@@ -16,8 +16,10 @@ export const listAllUsers = (req, res) => {
   userModel.listAllUsers((error, result) => {
     if (error)
       res.status(500).json({ message: "Erro no Banco de Dados" })
-    if (result)
+    if (result) {
+      console.log(result.lenght)
       res.json(result)
+    }
   })
 }
 

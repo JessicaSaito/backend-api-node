@@ -7,7 +7,7 @@ export const showUser = (id, callback) => {
   con.query(sql, value, (err, result) => {
     if (err) {
       callback(err, null)
-      console.log('DB Error:' + err.sqlMessage)
+      console.log(`DB Error: ${err.sqlMessage}`)
     } else {
       callback(null, result)
     }
@@ -20,7 +20,7 @@ export const listAllUsers = (callback) => {
   con.query(sql, (err, result) => {
     if (err) {
       callback(err, null)
-      console.log('DB Error:' + err.sqlMessage)
+      console.log(`DB Error: ${err.sqlMessage}`)
     } else {
       callback(null, result)
     }
@@ -44,11 +44,10 @@ export const createUser = (user, callback) => {
 }
 
 
-export const deleteUser = (user, callback) => {
-  const { id } = user
+export const deleteUser = (id, callback) => {
   const sql = 'DELETE FROM usuarios WHERE id = ?;'
-  const values = [id]
-  con.query(sql, values, (err, result) => {
+  const value = [id]
+  con.query(sql, value, (err, result) => {
     if (err) {
       callback(err, null)
       console.log(`DB Error:  ${err.sqlMessage}`)

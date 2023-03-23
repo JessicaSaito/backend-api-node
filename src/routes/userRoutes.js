@@ -15,8 +15,8 @@ const router = express.Router()
 router.get('/:id', showUser) // SELECT ID
 router.get('/', listAllUsers) // SELECT
 router.post('/', createUser) // INSERT
-router.delete('/', deleteUser) // DELETE
-router.delete('/:id', deleteIdUser) // DELETE ID
+router.delete('/', deleteUser) // DELETE ID FROM BODY JSON
+router.delete('/:id', deleteIdUser) // DELETE ID FROM PARAMS
 router.put('/', editUser) // UPDATE
 
 

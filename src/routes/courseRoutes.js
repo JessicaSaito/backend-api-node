@@ -13,8 +13,8 @@ const router = express.Router()
 router.get('/:id', listCourse) // SELECT ID
 router.get('/', listAllCourses) // SELECT
 router.post('/', createCourse) // INSERT
-router.delete('/', deleteCourse) // DELETE
-router.delete('/:id', deleteIdCourse) // DELETE ID
+router.delete('/', deleteCourse) //  ID FROM BODY JSON
+router.delete('/:id', deleteIdCourse) // DELETE ID FROM PARAMS
 router.put('/', editCourse) // UPDATE
 
 export default router
