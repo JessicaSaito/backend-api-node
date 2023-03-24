@@ -2,7 +2,7 @@
 import express from 'express'
 import courseRoutes from './routes/courseRoutes.js'
 import userRoutes from './routes/userRoutes.js'
-import { SERVER }  from './config.js'
+import { SERVER } from './config.js'
 import errorHandler from './middlewares/errorHandler.js'
 import logger from './middlewares/logger.js'
 
@@ -26,3 +26,5 @@ app.use(errorHandler)
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+console.log((new Date()).toLocaleDateString('pt-BR'))

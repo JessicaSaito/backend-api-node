@@ -27,19 +27,28 @@ export const listAllUsers = (req, res) => {
 export const createUser = (req, res) => {
   const user = req.body
   //TODO Verificar se os dados são válidos
-  userModel.createUser(user, (error, result) => {
-    if (error)
-      res.status(500).json({ message: "Erro no Banco de Dados" })
-    if (result) {
-      res.json({
-        message: "Usuário Cadastrado!",
-        user: {
-          id: result.insertId,
-          ...user
-        }
-      })
-    }
-  })
+  
+  try {
+    userModel.validateUser(user)
+    userModel.createUser(user, (error, result) => {
+      if (error)
+        res.status(500).json({ message: "Erro no Banco de Dados" })
+      if (result) {
+        res.json({
+          message: "Usuário Cadastrado!",
+          user: {
+            id: result.insertId,
+            ...user
+          }
+        })
+      }
+    })
+  } catch (error) {
+    res.status(400).json({
+      message: 'Dados inválidos',
+      error: error.errors
+    })
+  }
 }
 
 
