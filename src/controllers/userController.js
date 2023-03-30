@@ -7,7 +7,7 @@ export const showUser = (req, res) => {
     if (error)
       res.status(500).json({ message: "Erro no Banco de Dados" })
     if (result)
-      res.json(result)
+      res.json(result[0])
   })
 }
 
@@ -17,8 +17,11 @@ export const listAllUsers = (req, res) => {
     if (error)
       res.status(500).json({ message: "Erro no Banco de Dados" })
     if (result) {
-      console.log(result.lenght)
-      res.json(result)
+      if (result.length) {
+        res.json(result)
+      } else {
+        res.json({ message: "Nenhum usuário cadastrado!" })
+      }
     }
   })
 }
@@ -27,7 +30,7 @@ export const listAllUsers = (req, res) => {
 export const createUser = (req, res) => {
   const user = req.body
   //TODO Verificar se os dados são válidos
-  
+
   try {
     userModel.validateUser(user)
     userModel.createUser(user, (error, result) => {
