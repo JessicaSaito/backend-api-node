@@ -29,7 +29,6 @@ export const listAllUsers = (req, res) => {
 
 export const createUser = (req, res) => {
   const user = req.body
-  //TODO Verificar se os dados são válidos
 
   try {
     userModel.validateUser(user)
@@ -47,9 +46,15 @@ export const createUser = (req, res) => {
       }
     })
   } catch (error) {
+    const formatted = error.format();
+    delete formatted._errors
+    const fields = {}
+    for (let field in formatted) {
+      fields[field] = { messages: formatted[field]._errors }
+    }
     res.status(400).json({
       message: 'Dados inválidos',
-      error: error.errors
+      fields: fields
     })
   }
 }
