@@ -14,6 +14,12 @@ const userSchema = z.object({
     })
       .min(3, { message: "Nome deve ter no mínimo 3 caracteres." })
       .max(100, { message: "Nome deve ter no máximo 100 caracteres." }),
+  foto:
+    z.string({
+      required_error: "Avatar é obrigatória.",
+      invalid_type_error: "Avatar deve ser uma string.",
+    })
+      .url({ message: "Avatar deve ser uma URL válida." }),
   email:
     z.string({
       required_error: "Email é obrigatória.",
@@ -28,13 +34,7 @@ const userSchema = z.object({
       invalid_type_error: "Senha deve ser uma string.",
     })
       .min(6, { message: "Senha deve ter no mínimo 6 caracteres." })
-      .max(256, { message: "Senha deve ter no máximo 256 caracteres." }),
-  avatar:
-    z.string({
-      required_error: "Avatar é obrigatória.",
-      invalid_type_error: "Avatar deve ser uma string.",
-    })
-      .url({ message: "Avatar deve ser uma URL válida." })
+      .max(256, { message: "Senha deve ter no máximo 256 caracteres." })
 })
 
 
